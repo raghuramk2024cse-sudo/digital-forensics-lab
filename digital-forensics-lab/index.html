@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Digital Forensics Lab - Interactive cybersecurity investigation simulator for digital forensics, timeline analysis, and incident response.">
+  <title>Digital Forensics Lab | Incident Investigation Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- =========================================================================
+         SIDEBAR NAVIGATION
+         ========================================================================= -->
+    <aside class="sidebar" id="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <a href="#dashboard" class="brand-badge" id="sidebar-brand-link">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <circle cx="12" cy="11" r="3"/>
+              <line x1="12" y1="5" x2="12" y2="7"/>
+              <line x1="12" y1="15" x2="12" y2="17"/>
+              <line x1="6" y1="11" x2="8" y2="11"/>
+              <line x1="16" y1="11" x2="18" y2="11"/>
+            </svg>
+          </div>
+          <div class="brand-title">
+            <span class="brand-name">DFIR LAB</span>
+            <span class="brand-tagline">Forensic Station</span>
+          </div>
+        </a>
+        <button class="sidebar-close-btn" id="btn-close-sidebar" aria-label="Close Sidebar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Overview</div>
+        <a href="#dashboard" class="nav-item active" data-view="view-dashboard" id="nav-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#cases" class="nav-item" data-view="view-cases" id="nav-cases">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <span>Case Files</span>
+          <span class="nav-badge">3</span>
+        </a>
+
+        <div class="nav-section-label">Investigation Tools</div>
+        <a href="#evidence" class="nav-item" data-view="view-evidence" id="nav-evidence">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6M8 11h6"/></svg>
+          <span>Evidence Viewer</span>
+        </a>
+        <a href="#timeline" class="nav-item" data-view="view-timeline" id="nav-timeline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Event Timeline</span>
+        </a>
+        <a href="#findings" class="nav-item" data-view="view-findings" id="nav-findings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Red Flags & Findings</span>
+        </a>
+
+        <div class="nav-section-label">Case Resolution</div>
+        <a href="#challenge" class="nav-item" data-view="view-challenge" id="nav-challenge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span>Case Challenge</span>
+        </a>
+        <a href="#report" class="nav-item" data-view="view-report" id="nav-report">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Official Report</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status-pill">
+          <span class="pulse-dot"></span>
+          <span>SYSTEM ONLINE // READY</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- =========================================================================
+         MAIN CONTENT AREA
+         ========================================================================= -->
+    <main class="main-wrapper" id="main-content">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="sidebar-toggle-btn" id="btn-mobile-sidebar" aria-label="Open Navigation Menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+
+          <!-- Active Case Switcher Chip -->
+          <div class="active-case-banner" id="header-case-badge" title="Click to view all cases" style="cursor: pointer;">
+            <span class="active-case-tag" id="header-case-id">DF-2024-001</span>
+            <span class="active-case-name" id="header-case-name">The Midnight Access</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-tertiary);"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Investigator Profile Pill -->
+          <div class="investigator-profile-pill hide-mobile" id="header-profile-pill" title="Click to edit your investigator profile">
+            <div class="profile-avatar" id="header-profile-avatar">A</div>
+            <div class="profile-info">
+              <span class="profile-name" id="header-profile-name">Alex Rivera</span>
+              <span class="profile-rank" id="header-profile-rank">Junior Analyst</span>
+            </div>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-tertiary);"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+
+          <!-- Investigator Notebook Button -->
+          <button class="btn btn-secondary btn-sm" id="btn-open-notebook" title="Open Your Working Case Notes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Notes</span>
+          </button>
+
+          <!-- Mentor Guidance Button -->
+          <button class="btn btn-secondary btn-sm" id="btn-open-mentor" title="Ask Mentor Agent Hayes for a Hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Mentor</span>
+          </button>
+
+          <button class="btn btn-secondary btn-sm" id="btn-open-primer" title="Forensic Guidelines & Primer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Guide</span>
+          </button>
+
+          <button class="btn btn-secondary btn-sm" id="btn-reset-progress" title="Reset all simulator state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+            <span>Reset</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- HUMANIZED INVESTIGATION STEPPER (ACTIVE ON CASE VIEWS) -->
+      <div style="padding: 1.5rem 2rem 0; max-width: 1400px; margin: 0 auto; width: 100%;">
+        <div class="investigation-stepper-wrap" id="active-case-stepper" style="display: none;">
+          <div class="stepper-steps-list">
+            <button class="stepper-step active" data-step-view="view-evidence">
+              <span class="step-num-bubble">1</span>
+              <span>Review Clues</span>
+            </button>
+            <span class="stepper-divider">&rarr;</span>
+
+            <button class="stepper-step" data-step-view="view-timeline">
+              <span class="step-num-bubble">2</span>
+              <span>Reconstruct Timeline</span>
+            </button>
+            <span class="stepper-divider">&rarr;</span>
+
+            <button class="stepper-step" data-step-view="view-findings">
+              <span class="step-num-bubble">3</span>
+              <span>Flag Red Flags</span>
+            </button>
+            <span class="stepper-divider">&rarr;</span>
+
+            <button class="stepper-step" data-step-view="view-challenge">
+              <span class="step-num-bubble">4</span>
+              <span>Solve Case Exam</span>
+            </button>
+            <span class="stepper-divider">&rarr;</span>
+
+            <button class="stepper-step" data-step-view="view-report">
+              <span class="step-num-bubble">5</span>
+              <span>Official Report</span>
+            </button>
+          </div>
+
+          <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-tertiary);">
+            STEP-BY-STEP WORKFLOW
+          </div>
+        </div>
+      </div>
+
+      <!-- =======================================================================
+           VIEW 1: DASHBOARD
+           ======================================================================= -->
+      <section class="view-section active-view" id="view-dashboard">
+        
+        <!-- ULTRA SLEEK HERO BANNER MATCHING 'ULTIMATE CRYPTURE SOLUTION' -->
+        <div class="welcome-hero-banner">
+          <div class="welcome-hero-content">
+            <div class="pill-badge" style="width: fit-content; margin-bottom: 0.25rem;">
+              <span>DIGITAL FORENSICS LAB // STATION 01</span>
+            </div>
+            <h1 class="welcome-headline">ULTIMATE FORENSICS SOLUTION</h1>
+            <p class="welcome-subtext" style="text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; color: var(--text-tertiary); max-width: 480px; line-height: 1.6;">
+              DFIR PLATFORM EMPOWERING INVESTIGATORS TO ANALYZE EVIDENCE & INCIDENTS EFFORTLESSLY
+            </p>
+            
+            <div class="tip-of-the-day-pill" style="margin-top: 0.75rem;">
+              <span style="color:#ffffff; font-weight:700;">RULE #1:</span>
+              <span>Observed technical facts must be kept distinct from assumptions of guilt.</span>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn-primary" id="dash-banner-btn" style="padding: 0.85rem 2rem; font-size: 0.88rem;">
+              <span>ORDER NOW</span>
+              <span style="font-size: 1.15rem; line-height: 1;">&#8599;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STATS OVERVIEW CARDS -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">ASSIGNED DOSSIERS</span>
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dash-total-cases">03</div>
+            <div class="stat-subtext">Active forensic packages</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">SOLVED INCIDENTS</span>
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dash-completed-cases">00</div>
+            <div class="stat-subtext">Verified with signed reports</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">CLUES EXAMINED</span>
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dash-evidence-examined">00</div>
+            <div class="stat-subtext">Verified digital artifacts</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">ACCURACY RATING</span>
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dash-avg-score">00%</div>
+            <div class="stat-subtext">Reasoning exam score</div>
+          </div>
+        </div>
+
+        <!-- CASES HEADING MATCHING 'SELECT YOUR PRICING PLAN' -->
+        <div style="text-align: center; margin: 3.5rem 0 2.25rem;">
+          <div class="pill-badge" style="margin-bottom: 0.85rem;">INVESTIGATION DOSSIERS</div>
+          <h2 class="section-title" style="text-align: center; font-size: 2.6rem;">SELECT YOUR CASE DOSSIER</h2>
+        </div>
+        <div class="cases-grid" id="dash-cases-list">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- BOTTOM BANNER MATCHING 'EASY TO USE. EVERYWHERE' -->
+        <div style="text-align: center; margin: 4.5rem 0 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
+          <div class="pill-badge" style="margin-bottom: 0.85rem;">FORENSICS IT'S EASY</div>
+          <h2 class="section-title" style="text-align: center; font-size: 2.8rem;">EASY TO USE.<br>EVERYWHERE</h2>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           VIEW 2: CASE SELECTION
+           ======================================================================= -->
+      <section class="view-section" id="view-cases">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <div class="pill-badge" style="margin-bottom: 0.85rem;">PRICING & DOSSIERS</div>
+          <h1 class="section-title" style="text-align: center; font-size: 2.8rem;">SELECT YOUR CASE DOSSIER</h1>
+          <p class="section-desc" style="margin: 0.75rem auto 0; text-align: center;">Each investigation package contains verified raw digital artifacts and chronological telemetry.</p>
+        </div>
+
+        <div class="cases-grid" id="cases-selection-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           VIEW 3: EVIDENCE VIEWER
+           ======================================================================= -->
+      <section class="view-section" id="view-evidence">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-pretitle">Step 1: Clue Collection</span>
+            <h1 class="section-title" id="evidence-case-title">Case DF-2024-001: Evidence Viewer</h1>
+            <p class="section-desc" id="evidence-case-desc">Search and inspect raw evidence items. Each item includes a <strong>Plain English Translation</strong> to help you understand the technical meaning behind the event.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-sm" onclick="navigateTo('view-timeline')">
+              <span>Next: View Timeline &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TOOLBAR: SEARCH, FILTERS, PROGRESS -->
+        <div class="evidence-toolbar">
+          <div class="evidence-filters">
+            <div class="search-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="evidence-search" class="search-input" placeholder="Search clues by keyword, IP, user, file...">
+            </div>
+
+            <select id="evidence-type-filter" class="select-filter" aria-label="Filter by Evidence Type">
+              <option value="all">All Evidence Types</option>
+              <option value="login">Login & Auth Logs</option>
+              <option value="file">File System Records</option>
+              <option value="device">Device & Hardware</option>
+              <option value="system">System & OS Commands</option>
+              <option value="network">Network & Firewall</option>
+            </select>
+
+            <select id="evidence-status-filter" class="select-filter" aria-label="Filter by Review Status">
+              <option value="all">All Review Statuses</option>
+              <option value="suspicious">Suspicious Clues Only</option>
+              <option value="unreviewed">Unreviewed Only</option>
+              <option value="reviewed">Examined Only</option>
+              <option value="flagged">Flagged Key Clues Only</option>
+            </select>
+
+            <select id="evidence-sort" class="select-filter" aria-label="Sort Evidence">
+              <option value="time-asc">Sort: Chronological (Oldest First)</option>
+              <option value="time-desc">Sort: Chronological (Newest First)</option>
+              <option value="severity">Sort: Red Flag Severity</option>
+            </select>
+          </div>
+
+          <div class="evidence-progress-badge">
+            <span id="evidence-reviewed-count">0/12 Examined</span>
+            <div class="evidence-progress-bar">
+              <div class="evidence-progress-fill" id="evidence-reviewed-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVIDENCE CARDS LIST -->
+        <div class="evidence-list-container" id="evidence-items-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           VIEW 4: TIMELINE ANALYSIS
+           ======================================================================= -->
+      <section class="view-section" id="view-timeline">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-pretitle">Step 2: Story Reconstruction</span>
+            <h1 class="section-title" id="timeline-case-title">Incident Event Chronology</h1>
+            <p class="section-desc">Reconstruct the sequence of events leading up to the incident. Click on any card to inspect full technical details.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-sm" onclick="navigateTo('view-findings')">
+              <span>Next: Analyze Red Flags &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TIMELINE CONTROLS & LEGEND -->
+        <div class="timeline-controls">
+          <div class="timeline-legend">
+            <div class="legend-item">
+              <span class="legend-dot normal"></span>
+              <span>Normal Event</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot suspicious"></span>
+              <span>Suspicious Activity</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot critical"></span>
+              <span>Critical Red Flag</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary btn-sm" id="timeline-filter-suspicious">Show Suspicious Only</button>
+            <button class="btn btn-secondary btn-sm" id="timeline-sort-toggle">Sort: Oldest First</button>
+          </div>
+        </div>
+
+        <!-- TIMELINE TREE -->
+        <div class="timeline-tree" id="timeline-nodes-tree">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           VIEW 5: SUSPICIOUS FINDINGS / RED FLAGS
+           ======================================================================= -->
+      <section class="view-section" id="view-findings">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-pretitle">Step 3: Heuristic Red Flags</span>
+            <h1 class="section-title" id="findings-case-title">Suspicious Findings Analysis</h1>
+            <p class="section-desc">Review automated detection rules. Notice how observed technical facts are carefully distinguished from unproven human guilt.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-sm" onclick="navigateTo('view-challenge')">
+              <span>Next: Take Case Exam &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="findings-container" id="findings-rules-list">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           VIEW 6: INVESTIGATION CHALLENGE
+           ======================================================================= -->
+      <section class="view-section" id="view-challenge">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-pretitle">Step 4: Case Examination</span>
+            <h1 class="section-title" id="challenge-case-title">Investigation Examination</h1>
+            <p class="section-desc">Apply what you observed in the evidence and timeline. Answer the questions below to test your forensic reasoning.</p>
+          </div>
+        </div>
+
+        <!-- SCORE BANNER (VISIBLE AFTER SUBMISSION) -->
+        <div class="challenge-score-display" id="challenge-score-card">
+          <div style="display:flex; align-items:center; gap:1.5rem;">
+            <div class="score-badge-circle">
+              <span class="score-num" id="challenge-score-number">100</span>
+              <span class="score-denom">POINTS</span>
+            </div>
+            <div>
+              <div style="font-size:0.75rem; color:var(--neon-cyan); font-family:var(--font-mono); text-transform:uppercase;">Assessment Evaluation</div>
+              <h3 style="font-size:1.35rem; font-weight:700; color:#fff;" id="challenge-score-grade">Exemplary Forensic Reasoning</h3>
+              <p style="font-size:0.88rem; color:var(--text-secondary); margin-top:0.25rem;">Your answers reflect objective, evidence-based reasoning without premature accusations.</p>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="btn-challenge-goto-report">
+            <span>View Official Incident Report &rarr;</span>
+          </button>
+        </div>
+
+        <!-- CHALLENGE QUESTIONS LIST -->
+        <div id="challenge-questions-container">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div class="challenge-submit-bar">
+          <div style="font-size:0.85rem; color:var(--text-secondary);">
+            <strong style="color:#fff;">Integrity Notice:</strong> Answer all questions to unlock the official incident report and earn your detective rank.
+          </div>
+          <button class="btn btn-primary" id="btn-submit-challenge">Submit Answers & Score Exam</button>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           VIEW 7: INVESTIGATION REPORT & EXPORT
+           ======================================================================= -->
+      <section class="view-section" id="view-report">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-pretitle">Step 5: Final Documentation</span>
+            <h1 class="section-title">Official Incident Report</h1>
+            <p class="section-desc">Executive-ready documentation of your findings. Ready to print, save as PDF, or export as text.</p>
+          </div>
+          <div class="report-actions-bar" style="margin:0;">
+            <button class="btn btn-primary" id="btn-print-report">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              <span>Print / Save as PDF</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-export-report-txt">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export Text (.txt)</span>
+            </button>
+          </div>
+        </div>
+
+        <article class="report-paper-container" id="report-paper-body">
+          <!-- Rendered via JS -->
+        </article>
+      </section>
+
+      <!-- EDUCATIONAL DISCLAIMER FOOTER -->
+      <footer class="disclaimer-banner">
+        <span><strong>EDUCATIONAL SIMULATION NOTICE:</strong> Digital Forensics Lab is a friendly, self-contained educational simulator. All scenarios, IP addresses, and telemetry entries are fictional.</span>
+        <span>Vanilla JS &bull; LocalStorage &bull; Offline-Ready</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 1: EVIDENCE DETAILS INSPECTOR
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-evidence-inspector" role="dialog" aria-modal="true" aria-labelledby="inspector-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="inspector-title">Clue Inspector</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-evidence-inspector')" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="inspector-meta"></div>
+
+        <!-- Plain English Explanation Block -->
+        <div id="inspector-plain-english"></div>
+
+        <div>
+          <h4 style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-tertiary); text-transform:uppercase; margin-bottom:0.35rem;">Technical Background & Context</h4>
+          <p id="inspector-details" style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;"></p>
+        </div>
+
+        <div id="inspector-suspicious-box"></div>
+
+        <div>
+          <h4 style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-tertiary); text-transform:uppercase; margin-bottom:0.35rem;">Raw Telemetry / System Log</h4>
+          <pre class="raw-log-viewer" id="inspector-raw"></pre>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-tertiary); text-transform:uppercase; margin-bottom:0.35rem;">Cryptographic Integrity Hash (SHA-256)</h4>
+          <div class="hash-pill">
+            <span class="hash-val" id="inspector-hash"></span>
+            <button class="btn btn-secondary btn-sm" onclick="copyTextToClipboard(document.getElementById('inspector-hash').textContent)" title="Copy SHA-256 Hash">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="inspector-flag-btn">☆ Flag as Key Clue</button>
+        <button class="btn btn-primary" id="inspector-review-btn">Mark as Examined ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: INVESTIGATOR NOTEBOOK (SCRATCHPAD)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-notebook" role="dialog" aria-modal="true" aria-labelledby="notebook-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="notebook-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-cyan);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Investigator's Working Case Notes
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-notebook')" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.86rem; color:var(--text-secondary);">
+          Jot down your working theories, IP addresses of interest, and key clues as you investigate. Your notes auto-save directly to your browser.
+        </p>
+        <textarea id="notebook-content" class="notebook-textarea" placeholder="Example notes:
+- IP 198.51.100.42 failed 3 times before succeeding.
+- Connecting device was Linux, but employee uses Mac.
+- Keycard access confirms employee was not in the building..."></textarea>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <span id="notebook-save-status" style="font-size:0.78rem; font-family:var(--font-mono); color:var(--neon-green);">Saved to browser ✓</span>
+        <button class="btn btn-primary" onclick="closeModal('modal-notebook')">Close Notebook</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: MENTOR GUIDANCE
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-mentor" role="dialog" aria-modal="true" aria-labelledby="mentor-title">
+    <div class="modal-dialog" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="mentor-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-green);"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0 1.5 1.5 0 1 1 3 0c0 .9-.6 1.4-1.3 1.8A2.5 2.5 0 0 0 11 13.5v.5a1 1 0 0 0 2 0v-.5c0-.4.3-.7.8-1 1-.6 2.2-1.4 2.2-3A3.5 3.5 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></svg>
+          Mentor's Guidance: Agent Hayes
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-mentor')" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; align-items:center; gap:0.75rem; background:var(--bg-surface); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+          <div style="width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--neon-cyan), var(--neon-green)); display:flex; align-items:center; justify-content:center; color:#000; font-weight:800; font-size:1.1rem; flex-shrink:0;">
+            H
+          </div>
+          <div>
+            <div style="font-weight:700; color:#fff;">Senior Examiner Hayes</div>
+            <div style="font-size:0.75rem; color:var(--neon-cyan); font-family:var(--font-mono);">Lead Forensics Mentor</div>
+          </div>
+        </div>
+
+        <p id="mentor-tip-content" style="font-size:0.9rem; color:var(--text-primary); line-height:1.65; background:rgba(0, 229, 255, 0.06); padding:1rem; border-radius:var(--radius-sm); border-left:3px solid var(--neon-green);">
+          <!-- Populated via JS -->
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="closeModal('modal-mentor')">Thank you, Hayes!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 4: INVESTIGATOR PROFILE SETTINGS
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-profile" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="profile-modal-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-cyan);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Your Investigator Profile
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-profile')" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
+          <label for="input-investigator-name" style="font-size:0.85rem; font-weight:600; color:#fff;">Investigator Name</label>
+          <input type="text" id="input-investigator-name" class="search-input" style="padding:0.6rem 0.85rem;" placeholder="e.g. Alex Rivera">
+          <span style="font-size:0.75rem; color:var(--text-tertiary);">This name will appear on all your signed incident reports.</span>
+        </div>
+
+        <div style="margin-top:0.75rem; background:var(--bg-surface); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--text-tertiary); text-transform:uppercase; margin-bottom:0.35rem;">Career Rank Progression</div>
+          <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.84rem;">
+            <div>&bull; <strong>Junior Analyst</strong> (0 Cases Solved)</div>
+            <div>&bull; <strong>Forensic Detective</strong> (1 Case Solved)</div>
+            <div>&bull; <strong>Lead Incident Responder</strong> (2 Cases Solved)</div>
+            <div>&bull; <strong>Chief Forensic Examiner</strong> (3 Cases Solved)</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-profile')">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-profile">Save Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 5: RESET CONFIRMATION
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-reset-confirm" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="reset-modal-title" style="color:var(--neon-crimson);">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Reset All Progress?
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-reset-confirm')" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
+          This will reset all your saved answers, examined clue checkmarks, notes, and exam scores back to a fresh start.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-reset-confirm')">Cancel</button>
+        <button class="btn btn-danger" id="btn-confirm-reset">Confirm Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 6: FORENSIC GUIDE / PRIMER
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-primer" role="dialog" aria-modal="true" aria-labelledby="primer-modal-title">
+    <div class="modal-dialog" style="max-width: 640px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="primer-modal-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-cyan);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Investigator's Field Guide
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-primer')" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; flex-direction:column; gap:1.1rem; font-size:0.88rem; color:var(--text-secondary); line-height:1.65;">
+          <div>
+            <strong style="color:var(--neon-cyan); display:block; margin-bottom:0.25rem;">1. The Golden Rule: Facts Over Guilt</strong>
+            Digital evidence records only what machines did—never human intent. If employee Elena's account is used to log in at midnight, that proves Elena's password was entered, NOT that Elena was sitting at the computer. Always look for stolen credentials or session hijacking.
+          </div>
+          <div>
+            <strong style="color:var(--neon-green); display:block; margin-bottom:0.25rem;">2. Temporal Correlation (Timelines)</strong>
+            Attackers rarely act without patterns. Look for threshold triggers: failed logins right before a success, automated script blocks executed right after privilege elevation, or file deletions right before logs are wiped.
+          </div>
+          <div>
+            <strong style="color:var(--neon-amber); display:block; margin-bottom:0.25rem;">3. Detecting Anti-Forensics (Timestomping & Purges)</strong>
+            Attackers often try to hide their tracks. In Windows NTFS file systems, comparing the $STANDARD_INFORMATION timestamp with the Master File Table ($MFT) reveals if a file was deliberately backdated.
+          </div>
+          <div>
+            <strong style="color:var(--neon-crimson); display:block; margin-bottom:0.25rem;">4. Remediation First</strong>
+            Containment always comes first: terminate active sessions, isolate rogue IP addresses or MACs, and capture volatile RAM before rebooting victim machines.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="closeModal('modal-primer')">Got it, Return to Investigation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- CORE SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
