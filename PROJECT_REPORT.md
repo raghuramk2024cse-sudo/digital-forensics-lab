@@ -11,824 +11,610 @@
 ---
 
 ### Submitted by:
+**VS THAMIZHSELVAN 240701805**
 
-<br>
-
-<div align="center">
-
-| Student Name | Register Number |
-| :--- | :--- |
-| **SHOBAN KUMARESAN** *(or User Name)* | **2116210701245** |
-
-</div>
-
-<br>
-
-<div align="center">
-
-![Rajalakshmi Engineering College](./report_images/rec_logo.png)
+---
 
 ### RAJALAKSHMI ENGINEERING COLLEGE
 **(An Autonomous Institution Affiliated to ANNA UNIVERSITY, Chennai)**  
-**Thandalam, Chennai - 602 105**  
+**AUTONOMOUS, CHENNAI**  
 
-**NOVEMBER / DECEMBER, 2024**
-
-</div>
+**OCTOBER, 2026**
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 ## BONAFIDE CERTIFICATE
 
-Certified that this mini-project report titled **"DIGITAL FORENSICS LAB: INTERACTIVE CYBERSECURITY INCIDENT INVESTIGATION AND EVIDENCE ANALYSIS SIMULATOR"** is the bonafide work of **SHOBAN KUMARESAN (2116210701245)** who carried out the project work under my supervision.
+Certified that this mini-project **“Digital Forensics Lab”** is the bonafide work of **“VS Thamizhselvan (240701805)”** who carried out the project work under my supervision.
 
 <br><br><br>
 
-<div align="right">
-
 **SIGNATURE**  
-**Mrs. JANANEE V**,  
+**Dr. N. DURAIMURUGAN**  
 Assistant Professor,  
-Department of Computer Science & Engineering,  
-Rajalakshmi Engineering College,  
-Thandalam, Chennai - 602 105.  
-
-</div>
+Computer Science & Engineering  
+Rajalakshmi Engineering College  
+Thandalam, Chennai - 602105.  
 
 <br><br>
 
-Submitted for the End semester practical examination to be held on: `________________________`
+Submitted for the End semester practical examination to be held on: ____________________
 
-<br><br><br>
+<br><br>
 
-<div align="center">
-
-| INTERNAL EXAMINER | EXTERNAL EXAMINER |
-| :---: | :---: |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-
-</div>
+**INTERNAL EXAMINER** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; **EXTERNAL EXAMINER**
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 ## ACKNOWLEDGEMENT
 
-I express my sincere thanks to my beloved and honorable Chairman **Mr. S. MEGANATHAN** and Chairperson **Dr. M. THANGAM MEGANATHAN** for their timely support, vision, and relentless encouragement throughout the course of our study.
+I express my sincere thanks to our Chairman, Chairperson, and the management for their timely support and for providing an academic environment that enabled the successful completion of this mini-project.
 
-I am greatly indebted to my respected and honorable Principal **Dr. S. N. MURUGESAN** for his able support, academic leadership, and continuous guidance.
+I am grateful to our Principal for guidance and leadership throughout the project.
 
-No words of gratitude will suffice for the unquestioning support and motivation extended to us by our Head of the Department **Dr. P. KUMAR**, and our Academic Head **Dr. N. DURAIMURUGAN**, for being an ever-supporting force during the progression of this project work.
+I thank the Head of Department and Academic Coordinators for their support during planning and completion. Their guidance helped me maintain progress and encouraged me at each stage.
 
-I also extend my sincere and hearty thanks to my internal guide **Mrs. JANANEE V** and **Mrs. BHAVANI M** for their invaluable technical guidance, constructive critiques, and motivation during every phase of this project.
+I extend my sincere thanks to my internal project guide, **Dr. N. DURAIMURUGAN**, Assistant Professor, Department of Computer Science and Engineering, for valuable guidance and motivation during implementation and completion of the project.
 
-Finally, I convey my heartfelt thanks to my parents, family members, friends, and faculty members of the Department of Computer Science and Engineering for their constant prayers, moral backing, and support.
+Finally, I thank my parents, family, friends, and faculty members for their constant support and encouragement.
 
-<br><br>
+<br>
 
-<div align="right">
-
-**Shoban Kumaresan**  
-(Register No: 2116210701245)  
-
-</div>
+**VS Thamizhselvan (240701805)**
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 ## ABSTRACT
 
-In modern enterprise computing environments, cyber attacks such as credential stuffing, unauthorized data exfiltration, system tampering, and lateral movement have surged dramatically. However, traditional computer science education and corporate security training often present digital forensics and incident response (DFIR) as static, abstract theoretical concepts or rely on prohibitive, heavy virtual machines that are complex to configure and lack intuitive educational scaffolding.
+In modern enterprise computing environments, digital investigations and incident response have become critical safeguards against data breaches, insider threats, credential compromises, and malware outbreaks. However, traditional digital forensics training often relies on complex, monolithic virtual machine installations that demand steep hardware overhead and present prohibitive configuration barriers for students and aspiring analysts.
 
-To bridge this crucial gap, this project presents **Digital Forensics Lab (DFIR Lab)**, a high-fidelity, interactive, browser-based cybersecurity incident investigation and evidence analysis simulator. Built with a dependency-free vanilla architecture (HTML5, modern CSS3 with custom properties, and modular ES6+ JavaScript), the platform allows aspiring security analysts, students, and practitioners to perform authentic forensic investigations directly within any modern web browser.
+**Digital Forensics Lab** is a high-fidelity, interactive cybersecurity incident investigation and evidence analysis simulator designed to bridge the gap between abstract theoretical principles and authentic practical investigations. Built with a pure client-side, dependency-free architecture utilizing standard HTML5, modern CSS3 with custom properties, and modular ES6+ JavaScript, the platform runs instantly in any modern web browser without server backend dependencies.
 
-The platform simulates realistic incident dossiers across three complex attack scenarios: unauthorized credential misuse (*The Midnight Access*), data destruction and anti-forensics (*The Missing Files*), and executive account compromise via rogue hardware (*The Unknown Device*). Each case provides complete forensic artifacts, including multi-source raw logs (SSO authentication, syslog, bash command histories, reverse proxy HTTP headers, and file system metadata). Users can verify cryptographic chain-of-custody checksums using SHA-256 hashes, reconstruct event sequences in an interactive chronological timeline, flag suspicious indicators of compromise (IOCs), document working hypotheses in an integrated investigator notebook, and test their analytical reasoning in a scenario-driven examination. Upon completion, the system automatically synthesizes verified technical facts into a standardized, audit-ready Incident Investigation Report.
+The simulator provides three comprehensive real-world forensic cases: unauthorized credential access and confidential data exfiltration (*The Midnight Access*), insider tampering and anti-forensic deletion (*The Missing Files*), and executive account takeover via rogue devices (*The Unknown Device*). Analysts inspect heterogeneous raw logs (Web SSO, Linux syslog, bash history, reverse proxy telemetry, and file metadata), verify chain-of-custody checksums using cryptographic **SHA-256** digests, correlate events across an interactive chronological timeline, formulate investigative findings, test their analytical reasoning through scenario challenges, and automatically generate formal, audit-ready incident response reports.
 
-By eliminating complex software dependencies and delivering real-time sensory feedback, intuitive plain-English log translations, and professional forensic workflows, the Digital Forensics Lab dramatically lowers the barrier to learning cyber forensics while maintaining forensic rigor and scientific standards.
+By combining rigorous forensic workflows with accessible pedagogical scaffolding, Digital Forensics Lab delivers a standardized, practical, and engaging platform for academic laboratories and cybersecurity education.
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 ## TABLE OF CONTENTS
 
 | Chapter No. | Title | Page No. |
 | :---: | :--- | :---: |
-| &nbsp; | **ABSTRACT** | **iv** |
+| | **ABSTRACT** | **iv** |
 | **1** | **INTRODUCTION** | **1** |
-| &nbsp; | 1.1 Introduction | 1 |
-| &nbsp; | 1.2 Scope of the Work | 1 |
-| &nbsp; | 1.3 Problem Statement | 2 |
-| &nbsp; | 1.4 Aim and Objectives of the Project | 2 |
+| | 1.1 Introduction | 1 |
+| | 1.2 Scope of the Work | 1 |
+| | 1.3 Problem Statement | 2 |
+| | 1.4 Aim and Objectives of the Project | 2 |
 | **2** | **SYSTEM SPECIFICATIONS** | **3** |
-| &nbsp; | 2.1 Hardware Specifications | 3 |
-| &nbsp; | 2.2 Software Specifications | 3 |
-| **3** | **SYSTEM ARCHITECTURE** | **4** |
-| &nbsp; | 3.1 Architectural Overview | 4 |
-| &nbsp; | 3.2 Tier Decomposition | 4 |
-| **4** | **MODULE DESCRIPTION** | **6** |
-| &nbsp; | 4.1 Case Dossier & Scenario Simulation Engine | 6 |
-| &nbsp; | 4.2 Raw Evidence Inspector & Cryptographic Verification Module | 6 |
-| &nbsp; | 4.3 Multi-Source Chronological Event Timeline Reconstruction Module | 7 |
-| &nbsp; | 4.4 Red Flag & Forensic Indicator Tagging Module | 7 |
-| &nbsp; | 4.5 Interactive Investigation Challenge & Assessment Module | 8 |
-| &nbsp; | 4.6 Automated Incident Response & Formal Report Generator Module | 8 |
-| **5** | **SYSTEM DESIGN** | **9** |
-| &nbsp; | 5.1 Use Case Diagram | 9 |
-| &nbsp; | 5.2 Entity-Relationship (E-R) Model | 10 |
-| &nbsp; | 5.3 Data Flow Diagrams (DFD Level-0 & Level-1) | 11 |
-| &nbsp; | 5.4 Activity Diagram | 12 |
-| **6** | **SAMPLE CODING** | **13** |
-| &nbsp; | 6.1 Application Structure & Layout (`index.html`) | 13 |
-| &nbsp; | 6.2 Cyberpunk Theme & Responsive Styling (`style.css`) | 14 |
-| &nbsp; | 6.3 Forensic Data Structures & State Management (`script.js`) | 15 |
-| &nbsp; | 6.4 Cryptographic Verification & Timeline Sorting (`script.js`) | 16 |
-| **7** | **SCREENSHOTS** | **17** |
-| &nbsp; | Fig. 7.1: Forensics Lab Executive Dashboard | 17 |
-| &nbsp; | Fig. 7.2: Forensic Case Files Catalog & Scenario Selector | 18 |
-| &nbsp; | Fig. 7.3: Deep Evidence Viewer & Cryptographic Hash Inspector | 19 |
-| &nbsp; | Fig. 7.4: Interactive Incident Timeline Reconstruction | 20 |
-| &nbsp; | Fig. 7.5: Red Flag Indicator & Forensic Findings Board | 21 |
-| &nbsp; | Fig. 7.6: Case Challenge & Threat Analysis Assessment | 22 |
-| &nbsp; | Fig. 7.7: Official Incident Response & Chain-of-Custody Report | 23 |
-| **8** | **CONCLUSION & FUTURE ENHANCEMENTS** | **24** |
-| &nbsp; | 8.1 Conclusion | 24 |
-| &nbsp; | 8.2 Future Enhancements | 24 |
-| &nbsp; | **REFERENCES** | **25** |
+| | 2.1 Hardware Specifications | 3 |
+| | 2.2 Software Specifications | 3 |
+| **3** | **ARCHITECTURE DIAGRAM** | **4** |
+| **4** | **MODULE DESCRIPTION** | **5** |
+| | 4.1 Dashboard and Telemetry Overview Module | 5 |
+| | 4.2 Incident Dossiers & Multi-Scenario Simulation Module | 5 |
+| | 4.3 Evidence Locker & Cryptographic Integrity Verification Module | 5 |
+| | 4.4 Chronological Event Timeline Correlation Module | 6 |
+| | 4.5 Findings, Hypothesis & Red-Flag Board Module | 6 |
+| | 4.6 Scenario Challenge & Incident Report Generation Module | 6 |
+| **5** | **SYSTEM DESIGN** | **7** |
+| | 5.1 Use Case Diagram | 7 |
+| | 5.2 Data Model (In-Memory Forensic Schema) | 8 |
+| | 5.3 Data Flow Diagrams (Context Level-0 & Decomposed Level-1) | 9 |
+| | 5.4 Activity Diagram | 10 |
+| **6** | **SAMPLE CODING** | **11** |
+| | 6.1 Evidence Locker & Raw Syslog/JSON Inspector | 11 |
+| | 6.2 Chronological Timeline Reconstruction Engine | 12 |
+| | 6.3 Findings Board & Hypothesis State Management | 13 |
+| | 6.4 Executive Incident Report Synthesis Engine | 14 |
+| **7** | **SCREEN SHOTS** | **15** |
+| | Fig. 7.1 Dashboard Overview and Case Metrics | 15 |
+| | Fig. 7.2 Incident Case Selection and Dossier View | 15 |
+| | Fig. 7.3 Evidence Locker and Hash Integrity Verification | 16 |
+| | Fig. 7.4 Interactive Incident Timeline Reconstruction | 16 |
+| | Fig. 7.5 Findings and Red Flags Board | 17 |
+| | Fig. 7.6 Incident Response Knowledge Challenge | 17 |
+| | Fig. 7.7 Official Incident Investigation Report | 18 |
+| **8** | **CONCLUSION & FUTURE ENHANCEMENTS** | **19** |
+| | 8.1 Conclusion | 19 |
+| | 8.2 Future Enhancements | 19 |
+| | **REFERENCES** | **20** |
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 # CHAPTER 1: INTRODUCTION
 
 ### 1.1 INTRODUCTION
-Digital forensics and incident response (DFIR) has emerged as one of the most critical pillars of modern information security. Whenever an enterprise organization experiences a data breach, malware intrusion, unauthorized access, or internal data sabotage, forensic investigators are summoned to reconstruct the timeline of compromise, identify the threat actor's tactics, techniques, and procedures (TTPs), preserve digital evidence under strict chain of custody, and remediate vulnerabilities.
+Digital Forensics and Incident Response (DFIR) constitutes a foundational pillar of modern cybersecurity operations. As distributed enterprises, cloud platforms, and remote workstations handle ever-growing volumes of proprietary data, organizations face persistent threats from credential stuffers, rogue employees, and advanced persistent threat actors. 
 
-Despite the critical need for qualified digital forensic practitioners, learning digital forensics remains fraught with hurdles. Aspiring students and junior analysts are typically subjected either to dry theoretical textbooks devoid of hands-on log triage, or to heavyweight, complex capture-the-flag (CTF) environments that require gigabytes of disk image downloads, intricate hypervisor installations, and advanced proprietary software suites (such as EnCase, FTK, or commercial SIEM instances).
+Conducting authentic forensic investigations requires analysts to reconstruct chronological narratives, verify digital chain-of-custody, examine system and network logs without alteration, distinguish corroborated facts from intuitive speculation, and document findings in audit-compliant deliverables.
 
-The **Digital Forensics Lab** addresses these challenges by delivering an interactive, lightweight, zero-dependency, web-based digital forensics workstation simulator. Through a single, modern web interface, users step into the role of a certified forensic investigator, examining realistic evidence packets, correlating authentication events against file system changes, uncovering anti-forensics measures, proving digital integrity using cryptographic hashes, and generating formal incident findings.
+However, traditional academic training environments face severe hurdles: setting up hypervisors, disk image forensic suites (e.g., Autopsy, FTK), and sandboxed network targets demands extensive computing hardware, specialized licensing, and prolonged configuration time. **Digital Forensics Lab** overcomes these challenges by delivering an accessible, browser-native forensic simulation terminal that models realistic security operations with zero software installation requirements.
 
 ### 1.2 SCOPE OF THE WORK
-The scope of this project encompasses the design, architectural modeling, front-end implementation, forensic scenario authoring, and assessment validation of a complete digital investigation educational platform:
-1. **Scenario-Based Simulation**: Authoring three distinct incident dossiers covering unauthorized external logins, internal evidence destruction, and unauthorized endpoint hijacking.
-2. **Chain of Custody & Evidence Verification**: Implementation of SHA-256 cryptographic hashing to demonstrate proof of non-tampering in digital artifacts according to ISO/IEC 27037 standards.
-3. **Multi-Source Telemetry Correlation**: Parsing and displaying disparate log sources, such as SSO gateway logs, Apache/Nginx reverse proxy headers, Linux bash histories, syslog event logs, and file inode metadata.
-4. **Interactive Timeline Modeling**: Dynamic chronological sequencing of events with filtering by threat severity (`critical`, `suspicious`, `informational`), log source, and keyword matching.
-5. **Cognitive Scaffolding & Dual-Layer Representation**: Presenting raw technical log payloads alongside humanized plain-English explanations, guiding beginner learners toward professional log analysis competence.
-6. **Assessment & Incident Reporting**: Providing scenario-specific objective validation questions, investigator rank progression, and an automated report generation engine that formats formal forensic reports.
+The scope of the Digital Forensics Lab mini-project encompasses:
+1. Developing an interactive, browser-executable cybersecurity forensic simulator with a modern dark-mode terminal user interface.
+2. Modeling realistic multi-source forensic datasets across three primary enterprise incident scenarios: unauthorized credential misuse, anti-forensic log deletion, and hardware token spoofing.
+3. Supplying an **Evidence Locker** that pairs authentic raw JSON and syslog records with cryptographic **SHA-256** checksums and plain-English mentor explanations.
+4. Constructing an interactive **Event Timeline** allowing chronological ordering and anomaly filtering across disparate server, network, and file-system artifacts.
+5. Providing a **Findings & Hypothesis Board** where students formulate evidence-backed conclusions and distinguish facts from unverified assumptions.
+6. Supplying interactive **Knowledge Challenges** with immediate scenario-grounded scoring feedback.
+7. Automating the synthesis of verified investigative actions into exportable and printable **Incident Investigation Reports**.
 
 ### 1.3 PROBLEM STATEMENT
-Traditional methods of educating computer science students in digital forensic analysis suffer from several critical shortcomings:
-* **Steep Tooling Barrier**: Standard forensic labs require students to manage virtual machines, install Linux distributions, mount raw image files, and configure memory analyzers before analyzing a single log entry.
-* **Lack of Narrative Context**: Many exercises present isolated command outputs without the narrative backdrop of a real corporate incident, divorcing evidence from realistic business impact.
-* **Neglect of Chain of Custody & Legal Rigor**: Students frequently overlook the fundamental rule of forensics—distinguishing observed technical facts from premature assumptions of guilt, and documenting cryptographic integrity.
-* **Absence of Real-Time Mentorship**: When beginners face cryptic syslog errors, hexadecimal dumps, or epoch timestamps, they lack inline contextual assistance, resulting in frustration and dropouts.
+Conventional cybersecurity instruction and digital forensics laboratories exhibit three major pedagogical and operational deficiencies:
+* **High Infrastructure Barrier:** Traditional forensic tools require high-performance multi-gigabyte virtual machines and proprietary licenses, restricting laboratory accessibility for students with standard hardware.
+* **Abstract Theoretical Pedagogy:** Standard academic curricula frequently focus heavily on abstract legal guidelines and theoretical formulas without offering immersive, exploratory engagement with raw telemetry.
+* **Lack of Guided Interpretive Scaffolding:** Novice investigators confronted with raw RFC 5424 syslog or Windows Security Event logs encounter intimidating syntax hurdles without contextual guidance, slowing the acquisition of investigative intuition.
 
-The Digital Forensics Lab resolves these issues by packaging complex multi-source telemetry, cryptographic integrity checks, interactive timeline manipulation, and structured mentoring into an accessible, responsive web application.
+Digital Forensics Lab directly addresses these challenges by encapsulating enterprise-grade forensic analysis workflows inside a zero-dependency, intuitive, client-side web application.
 
 ### 1.4 AIM AND OBJECTIVES OF THE PROJECT
-The overarching aim of this project is to create an engaging, technically rigorous, client-side digital forensics training platform that equips students with real-world incident investigation skills.
-
-The specific objectives are:
-1. To engineer a client-side Single-Page Application (SPA) using HTML5, modern CSS3, and ES6+ JavaScript requiring zero back-end server setup or database management.
-2. To design an authentic cyber-themed user interface featuring dark mode aesthetics, responsive modular views, and dynamic visual indicators.
-3. To develop three comprehensive forensic cases with curated JSON evidence datasets mirroring enterprise enterprise telemetry.
-4. To integrate real-time cryptographic hash display and verification to reinforce the importance of evidence integrity in digital legal proceedings.
-5. To build interactive investigation tools including a Chronological Event Timeline, Evidence Inspector, Red Flag Marker, and Investigator Notebook.
-6. To implement an automated incident report generation module capable of compiling findings, conclusions, and remediations into an executive-ready document.
+* **Primary Aim:** To design and implement a zero-dependency, client-side digital forensics and incident investigation simulator that enables hands-on evidence examination, timeline reconstruction, and automated report synthesis in modern web browsers.
+* **Key Objectives:**
+  * To architect an accessible, modular single-page application utilizing semantic HTML5, cyber-themed responsive CSS3, and ES6+ JavaScript.
+  * To generate three realistic forensic case studies containing structured evidence artifacts, raw telemetry payloads, and cryptographic integrity hashes.
+  * To build an interactive chronological event timeline that correlates authentication, network proxy, and file system logs.
+  * To implement a structured investigative methodology separating raw facts from formulated conclusions on an interactive findings board.
+  * To design an automated report synthesis engine that compiles investigation metrics, evidence summaries, and examiner signatures into a standardized deliverable.
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 # CHAPTER 2: SYSTEM SPECIFICATIONS
 
 ### 2.1 HARDWARE SPECIFICATIONS
-
-The Digital Forensics Lab is engineered to be lightweight, running entirely within modern web browser runtimes without requiring local virtualization, heavy memory allocations, or dedicated GPU accelerators.
-
-| Hardware Component | Minimum Requirement | Recommended Specification |
-| :--- | :--- | :--- |
-| **Processor** | Dual Core 1.8 GHz Intel / AMD / Apple Silicon | Quad Core 2.4 GHz or higher (Intel Core i5 / Apple M-Series) |
-| **System Memory (RAM)** | 2.0 GB RAM | 4.0 GB RAM or higher |
-| **Storage (HDD / SSD)** | 50 MB free disk space | 500 MB free SSD storage |
-| **Display Resolution** | 1024 x 768 (XGA) | 1920 x 1080 (Full HD) or Retina |
-| **Input Devices** | Standard Keyboard and Mouse / Trackpad | Standard Keyboard with Scroll Wheel Mouse |
+* **Processor:** Intel Core i3 / AMD Ryzen 3 or higher (Fully compatible with Apple Silicon M1/M2/M3/M4)
+* **Memory (RAM):** 4 GB RAM minimum; 8 GB recommended
+* **Storage:** 500 MB free disk space (Completely zero database footprint)
+* **Display Resolution:** 1280 × 720 minimum (Responsive across desktop, laptop, and tablet viewports)
 
 ### 2.2 SOFTWARE SPECIFICATIONS
+* **Operating System:** Windows 10/11, macOS Monterey or later, or Linux (Ubuntu 20.04+)
+* **Front-End Technologies:**
+  * **HTML5:** Semantic architecture, accessible ARIA landmarks, dialog modals
+  * **CSS3:** Custom Properties (Neon cyber tokens), Flexbox, CSS Grid, Glassmorphic panels, CSS Paged Media (`@media print`)
+  * **JavaScript:** Modern ECMAScript 2022 (ES6+), Modular state architecture, DOM manipulation
+* **APIs & Web Standards Used:**
+  * **Web Storage API:** `window.localStorage` for saving investigator progress and notes
+  * **Clipboard API:** `navigator.clipboard.writeText()` for raw log extraction
+  * **CSS Paged Media API:** Native `@media print` styling for PDF and paper report generation
+* **Web Browser:** Google Chrome 90+, Mozilla Firefox 88+, Microsoft Edge 90+, or Apple Safari 14+
 
-The system leverages standard web protocols and open web standards, ensuring platform independence across all modern operating systems.
-
-| Software Layer | Technology / Specification |
-| :--- | :--- |
-| **Operating System** | Platform Independent: Windows 10/11, macOS 12+, Ubuntu Linux 20.04+, ChromeOS |
-| **Target Runtime** | Modern Chromium / WebKit / Gecko Browser (Google Chrome 90+, Mozilla Firefox 88+, Apple Safari 15+, Microsoft Edge 90+) |
-| **Front-End Presentation** | Semantic HTML5, CSS3 Custom Properties (CSS Variables), Flexbox, CSS Grid, SVG Vector Icons |
-| **Application Logic** | Pure Vanilla JavaScript (ECMAScript 2020+ / ES6+), Dependency-Free |
-| **Client-Side Storage** | HTML5 Web Storage API (`window.localStorage` and `window.sessionStorage`) |
-| **Cryptographic Standards** | W3C Web Cryptography API (`crypto.subtle` / SHA-256 Algorithm) |
-| **Export Format** | Cascading Style Sheets Print Media Queries (`@media print`) and Standard PDF Export |
-
----
-
-<div style="page-break-after: always;"></div>
-
-# CHAPTER 3: SYSTEM ARCHITECTURE
-
-### 3.1 ARCHITECTURAL OVERVIEW
-The architecture of the Digital Forensics Lab follows a clean, decoupled **Three-Tier Client-Side Architecture** designed for zero-latency interactivity, full data confidentiality (all data remains in the user's browser), and zero installation requirements.
-
-<br>
-
-<div align="center">
-
-![System Architecture Diagram](./report_images/ch3_architecture_diagram.png)
-
-**Fig. 3.1: High-Level System Architecture of Digital Forensics Lab**
-
-</div>
-
-<br>
-
-### 3.2 TIER DECOMPOSITION
-
-#### 1. Presentation Tier (UI / UX Layer)
-The presentation layer is responsible for rendering an immersive cyber-forensic workstation experience. It includes:
-* **Forensic HUD & Dashboard**: Displays key metric cards (Active Cases, Evidence Examined, Solved Dossiers, Investigator Rank, Accuracy Index).
-* **Navigation & View Router**: Implements smooth Single Page Application (SPA) tab switching between Dashboard, Case Files, Evidence Viewer, Timeline, Findings, Challenge, and Report.
-* **Evidence Inspector Drawer**: Formats JSON telemetry and raw log payloads into syntax-highlighted, legible cards with plain-English toggle switches.
-* **Event Timeline Matrix**: Dynamically constructs chronological log cards with severity badges, category pills, and quick-filter toolbars.
-* **Investigator Notebook**: Provides a persistent modal notepad for recording hypotheses, timestamps, and suspicious IP addresses.
-
-#### 2. Application Logic Tier (Controller & Forensic Engine)
-The middle tier encapsulates the forensic business logic and rules:
-* **State Manager**: Tracks investigator progress across cases, records examined evidence IDs, and synchronizes state to `localStorage`.
-* **Evidence Filtering & Search Engine**: Enables real-time text searching across log summaries, IP addresses, usernames, and file paths.
-* **Cryptographic Hash Engine**: Validates SHA-256 signatures for every evidence item to guarantee chain of custody.
-* **Assessment Evaluator**: Validates answers to scenario challenge questions, computes accuracy percentages, and determines rank promotions.
-* **Report Synthesizer**: Aggregates verified evidence and findings into a printable, structured Incident Response Report.
-
-#### 3. Data Tier (Simulated Telemetry & Local Storage)
-The data layer maintains the core forensic corpora:
-* **Case Corpus (`FORENSIC_CASES`)**: Declarative in-memory structures storing scenario dossiers, difficulty levels, threat summaries, and mentor tips.
-* **Evidence Log Store**: Multi-source telemetry representing authentic syslogs, auditd logs, bash histories, and network request records.
-* **Browser Local Storage**: Persists user name, rank progress, exam completions, and custom investigator notes across page reloads.
+The application requires only a modern standard-compliant browser. All computation and state manipulation occur in the client interface with zero backend network communication.
 
 ---
+\pagebreak
 
-<div style="page-break-after: always;"></div>
+# CHAPTER 3: ARCHITECTURE DIAGRAM
+
+The architecture follows a strict **Client-Side Isolated Simulation Pipeline**. Case telemetry, log records, and user hypotheses remain strictly in browser volatile memory and local storage.
+
+![Architecture Diagram](report_images/ch3_architecture_diagram.png)
+
+```mermaid
+graph TD
+    subgraph Client Browser Environment
+        A[Investigator Input: Case Selection & Inspection] --> B[App Controller & View Navigator]
+        
+        B --> C{Active Forensic View}
+        
+        C -->|Select Dossier| D[Case Selection & Scenario Manager]
+        C -->|Inspect Artifacts| E[Evidence Locker & Raw Log Inspector]
+        C -->|Reconstruct History| F[Event Timeline Engine]
+        C -->|Document Conclusions| G[Findings & Hypothesis Board]
+        C -->|Test Knowledge| H[Case Challenge Evaluator]
+        C -->|Export Deliverable| I[Executive Report Generator]
+        
+        E -->|Verify SHA-256 Checksums| J[Cryptographic Integrity Engine]
+        F -->|Sort Chronologically & Filter Anomaly| K[Timeline Node Correlator]
+        
+        subgraph Storage & Persistence
+            L[(Web Storage API: localStorage)]
+        end
+        
+        B <-->|Load / Persist State| L
+        I -->|CSS Paged Media Print / PDF| M[Exported Incident Deliverable]
+    end
+    
+    subgraph Remote Network Boundary
+        N[External Internet / Backend Servers]
+    end
+    
+    B -.->|ZERO SERVER COMMUNICATION / 100% PRIVATE| N
+```
+
+---
+\pagebreak
 
 # CHAPTER 4: MODULE DESCRIPTION
 
-### 4.1 CASE DOSSIER & SCENARIO SIMULATION ENGINE
-This module is the entry point for forensic investigations. It maintains three fully fleshed-out incident scenarios:
-1. **Case DF-2024-001: The Midnight Access** — An unauthorized late-night authentication and download of a confidential merger termsheet (`Project_Titan_Acquisition_Termsheet.pdf`) via compromised employee credentials.
-2. **Case DF-2024-002: The Missing Files** — A data tampering and anti-forensics incident where finance spreadsheets were securely deleted and bash histories were scrubbed using elevated privileges.
-3. **Case DF-2024-003: The Unknown Device** — An anomalous device accessing an executive account, bypassing standard MDM policies via remote session token hijacking.
+### 4.1 DASHBOARD AND TELEMETRY OVERVIEW MODULE
+The dashboard serves as the central command console for the investigator. It presents real-time investigation metrics including overall completion percentage, evidence items reviewed, red-flags tagged, and current investigator rank (from *Junior Security Analyst* up to *Chief Forensic Investigator*). Quick-launch buttons allow immediate resumption of ongoing investigations.
 
-The module manages case metadata, switches the active investigation context, and updates all child modules to reflect the active case's artifacts.
+### 4.2 INCIDENT DOSSIERS & MULTI-SCENARIO SIMULATION MODULE
+This module provides curated, realistic forensic case studies:
+* **DF-2024-001 (The Midnight Access):** Investigates unauthorized confidential file downloads outside business hours via compromised Single Sign-On (SSO) credentials.
+* **DF-2024-002 (The Missing Files):** Explores insider threat activity involving suspicious bash scripts, mass file deletions, and bash history wiping attempts.
+* **DF-2024-003 (The Unknown Device):** Reconstructs an executive account compromise facilitated by rogue network hardware and concurrent remote IP access.
 
-### 4.2 RAW EVIDENCE INSPECTOR & CRYPTOGRAPHIC VERIFICATION MODULE
-Digital forensic integrity hinges upon the immutability of evidence. The Evidence Inspector provides:
-* **Raw Telemetry Inspection**: Real-time rendering of authentic log formats (Linux syslog, Windows Security Event ID 4624/4625, Apache HTTP logs).
-* **Cryptographic Hash Verification**: Every digital artifact is stamped with its SHA-256 hash. Analysts can inspect and verify these signatures to guarantee evidence has not been altered in transit.
-* **Plain-English Explanations**: A pedagogical bridge translating complex log strings (e.g., `event_id:4625`, `pam_unix(sshd:auth): authentication failure`) into clear statements explaining what occurred.
+### 4.3 EVIDENCE LOCKER & CRYPTOGRAPHIC INTEGRITY VERIFICATION MODULE
+The evidence locker manages all digital artifacts collected during an incident. Each artifact displays metadata including source daemon, UTC timestamp, event severity, and plain-English translations. An integrated raw telemetry modal displays exact syslog or JSON payloads alongside **SHA-256** checksums, allowing students to verify cryptographic chain of custody and understand how raw records correlate with higher-level alerts.
 
-### 4.3 MULTI-SOURCE CHRONOLOGICAL EVENT TIMELINE RECONSTRUCTION MODULE
-Incident responders must reconstruct the exact sequence of threat actor actions. This module:
-* Ingests timestamps from varied system clocks and normalizes them into standard UTC and relative epochs.
-* Renders an interactive vertical timeline detailing each stage of the attack lifecycle: initial access, credential brute-forcing, privilege escalation, file access, and log clearing.
-* Features multi-criteria filter controls allowing analysts to isolate critical anomalies, search specific user IDs or source IP addresses, and uncover timeline gaps.
+### 4.4 CHRONOLOGICAL EVENT TIMELINE CORRELATION MODULE
+This module sorts disparate log events from authentication servers, network reverse proxies, and host file systems into a unified chronological sequence. Users can sort ascending or descending by epoch timestamps, filter exclusively for suspicious red-flag events, and visually trace the trajectory of an attack from initial reconnaissance to objective execution.
 
-### 4.4 RED FLAG & FORENSIC INDICATOR TAGGING MODULE
-In digital forensics, identifying Indicators of Compromise (IOCs) is crucial for containment. This module allows investigators to:
-* Flag suspicious evidence items with a single click.
-* Categorize findings into Threat Categories (e.g., *Suspicious External IP*, *Operating System Fingerprint Mismatch*, *Anti-Forensics Deletion*).
-* Maintain a live tally of discovered red flags versus total case anomalies, reinforcing thorough analysis.
+### 4.5 FINDINGS, HYPOTHESIS & RED-FLAG BOARD MODULE
+Investigative integrity requires differentiating proven facts from unverified assumptions. The findings board enables analysts to tag observed anomalies, record working hypotheses regarding threat actor tactics, track analytical confidence, and write case notes in an integrated investigator notebook.
 
-### 4.5 INTERACTIVE INVESTIGATION CHALLENGE & ASSESSMENT MODULE
-To validate that the analyst arrived at technically sound conclusions rather than unfounded guesses, this module presents an interactive examination:
-* Evaluates forensic deductions regarding root cause, threat actor IP, compromised account, and exfiltrated files.
-* Provides immediate explanatory feedback upon submission, detailing why specific answers are supported or refuted by the evidence.
-* Dynamically updates the analyst's skill level from *Junior Analyst* to *Forensic Detective*, *Lead Incident Responder*, and *Chief Forensic Examiner*.
-
-### 4.6 AUTOMATED INCIDENT RESPONSE & FORMAL REPORT GENERATOR MODULE
-In real-world security engagements, forensic investigations culminate in a formal Incident Response Report for executive leadership and legal counsel. This module:
-* Automatically compiles case metadata, chronological summaries, flagged evidence items, and analyst notes.
-* Computes an overall Case Integrity Checksum certifying chain of custody.
-* Formats the document using clean, print-ready CSS stylesheets for instant printing or PDF saving.
+### 4.6 SCENARIO CHALLENGE & INCIDENT REPORT GENERATION MODULE
+* **Scenario Challenge:** Evaluates the student's root-cause attribution, identifying true indicators of compromise and recommending prioritized remediation actions with instant grading.
+* **Incident Report Generator:** Synthesizes verified case facts, inspected evidence tables, confirmed findings, and examiner credentials into an audit-ready deliverable ready for printing or PDF export.
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 # CHAPTER 5: SYSTEM DESIGN
 
 ### 5.1 USE CASE DIAGRAM
-The Use Case Diagram illustrates the interactions between the primary user (Forensic Investigator) and the platform modules:
+The use case diagram illustrates investigator interactions with the Digital Forensics Lab system boundary.
 
-<br>
+![Use Case Diagram](report_images/ch5_usecase_diagram.png)
 
-<div align="center">
+```mermaid
+flowchart LR
+    User((Investigator / Analyst))
+    
+    subgraph Digital Forensics Lab System
+        UC1[View Forensic Dashboard & Telemetry]
+        UC2[Select & Launch Case Dossier]
+        UC3[Inspect Evidence & Raw Syslog]
+        UC4[Verify SHA-256 Chain of Custody]
+        UC5[Reconstruct Chronological Timeline]
+        UC6[Formulate Findings & Hypotheses]
+        UC7[Complete Scenario Challenge]
+        UC8[Generate & Print Incident Report]
+    end
+    
+    User --> UC1
+    User --> UC2
+    User --> UC3
+    User --> UC4
+    User --> UC5
+    User --> UC6
+    User --> UC7
+    User --> UC8
+```
 
-![Use Case Diagram](./report_images/ch5_usecase_diagram.png)
+### 5.2 DATA MODEL (IN-MEMORY FORENSIC SCHEMA)
+The data model defines the structural schema governing cases, evidence artifacts, findings, and persisted investigator state.
 
-**Fig. 5.1: Use Case Diagram for Digital Forensics Lab Platform**
+![Entity Relationship Diagram](report_images/ch5_er_diagram.png)
 
-</div>
+```mermaid
+classDiagram
+    class ForensicCase {
+        +String id
+        +String title
+        +String difficulty
+        +String category
+        +String scenario
+        +String objective
+        +EvidenceItem[] evidence
+        +ChallengeQuestion[] challenges
+    }
+    class EvidenceItem {
+        +String id
+        +String timestamp
+        +Number epoch
+        +String type
+        +String severity
+        +String summary
+        +String plainEnglish
+        +String rawLog
+        +String hash
+        +Boolean isSuspicious
+    }
+    class InvestigatorState {
+        +String investigatorName
+        +String activeCaseId
+        +String[] reviewedEvidence
+        +String[] flaggedEvidence
+        +Number challengeScore
+        +Boolean completed
+    }
+    class IncidentReport {
+        +String caseId
+        +String examiner
+        +String timestamp
+        +EvidenceItem[] corroboratingEvidence
+        +String conclusions
+    }
+    
+    ForensicCase "1" *-- "many" EvidenceItem : contains
+    InvestigatorState "1" --> "1" ForensicCase : tracks progress of
+    InvestigatorState "1" --> "1" IncidentReport : compiles into
+```
 
-<br>
+### 5.3 DATA FLOW DIAGRAMS
 
-#### Use Case Specifications:
-1. **Explore & Select Incident Dossier**: Investigator selects an active case to study the incident scenario and scope.
-2. **Inspect Raw Evidence Logs**: Investigator analyzes system logs, reverse proxy headers, and file system records.
-3. **Verify SHA-256 Hashes**: Investigator checks cryptographic checksums to confirm chain-of-custody integrity.
-4. **Reconstruct Event Timeline**: Investigator sorts and filters event telemetry chronologically to reveal attack patterns.
-5. **Flag Red Flags & IOCs**: Investigator tags anomalous events as confirmed Indicators of Compromise.
-6. **Record Case Hypotheses**: Investigator documents clues and insights in the persistent Investigator Notes modal.
-7. **Solve Case Challenge Exam**: Investigator answers scenario questions to prove threat attribution and root causes.
-8. **Generate Official Forensic Report**: System synthesizes verified facts and conclusions into a standardized executive report.
+#### Level-0 DFD (Context Diagram)
+```mermaid
+graph LR
+    Investigator[Security Analyst / Student] -->|Actions, Notes, Challenge Answers| DFL[Digital Forensics Lab Application]
+    DFL -->|Case Dossiers, Timelines, Raw Logs, Audit Reports| Investigator
+```
 
----
+#### Level-1 DFD (Decomposed System Flow)
+![Data Flow Diagram](report_images/ch5_dfd_diagram.png)
 
-<div style="page-break-after: always;"></div>
-
-### 5.2 ENTITY-RELATIONSHIP (E-R) MODEL
-The data model captures the structural entities, attributes, and cardinality governing the forensics platform:
-
-<br>
-
-<div align="center">
-
-![Entity Relationship Diagram](./report_images/ch5_er_diagram.png)
-
-**Fig. 5.2: Entity-Relationship Diagram of Forensics Lab Data Entities**
-
-</div>
-
-<br>
-
-#### Entity Schema Definitions:
-* **INVESTIGATOR**: Represents the student or analyst (`analyst_id` [PK], `name`, `role_level`, `solved_count`, `accuracy_rating`).
-* **CASE_DOSSIER**: Represents simulated incident packages (`case_id` [PK], `title`, `difficulty`, `category`, `scenario_text`, `status`).
-* **EVIDENCE_ITEM**: Represents individual digital artifacts (`evidence_id` [PK], `case_id` [FK], `timestamp`, `source_system`, `severity`, `raw_log_payload`, `sha256_hash`, `is_suspicious`).
-* **FINDING_FLAG**: Represents flagged anomalies (`finding_id` [PK], `evidence_id` [FK], `analyst_id` [FK], `indicator_name`, `threat_severity`, `user_rationale`).
-* **CHALLENGE_EXAM**: Represents assessment questions (`question_id` [PK], `case_id` [FK], `prompt_question`, `options_json`, `correct_option_index`, `explanation`).
-* **OFFICIAL_REPORT**: Represents final synthesized deliverables (`report_id` [PK], `case_id` [FK], `analyst_id` [FK], `executive_summary`, `chain_of_custody_hash`, `generated_at`).
-
----
-
-<div style="page-break-after: always;"></div>
-
-### 5.3 DATA FLOW DIAGRAMS (DFD)
-
-#### 5.3.1 DFD Level-0 Diagram (Context Diagram) & 5.3.2 DFD Level-1 Diagram
-The data flow diagrams capture how data traverses between external entities, core application processes, and persistent data stores:
-
-<br>
-
-<div align="center">
-
-![Data Flow Diagram](./report_images/ch5_dfd_diagram.png)
-
-**Fig. 5.3: Data Flow Diagrams (Level-0 Context and Level-1 Decomposed Processes)**
-
-</div>
-
-<br>
-
-* **Level-0 Flow**: The Investigator initiates case requests and supplies findings; the Digital Forensics Platform returns raw telemetry, timeline visualizations, and formal reports, reading and persisting state in Local Storage.
-* **Level-1 Decomposition**: Sub-processes cleanly decouple Case Management (1.0), Evidence & Hash Verification (2.0), Timeline & Anomaly Analysis (3.0), and Challenge & Report Generation (4.0).
-
----
-
-<div style="page-break-after: always;"></div>
+```mermaid
+graph TD
+    User[Investigator] -->|Case Choice| P1[1.0 Case Dispatcher]
+    P1 -->|Case Artifacts| P2[2.0 Evidence Locker & Raw Inspector]
+    P2 -->|Parsed Timestamps & Severity| P3[3.0 Timeline Correlation Engine]
+    P3 -->|Identified Anomalies| P4[4.0 Findings & Hypothesis Formulation]
+    P4 -->|Answers & Conclusions| P5[5.0 Challenge Assessment Evaluator]
+    P5 -->|Score & Verified Facts| P6[6.0 Report Synthesis Engine]
+    P6 -->|Printable PDF Report| User
+```
 
 ### 5.4 ACTIVITY DIAGRAM
-The Activity Diagram details the sequential and parallel workflows an investigator follows to complete an investigation:
+The activity diagram tracks the investigative lifecycle from case briefing through evidence correlation and report export.
 
-<br>
+![Activity Diagram](report_images/ch5_activity_diagram.png)
 
-<div align="center">
-
-![Activity Diagram](./report_images/ch5_activity_diagram.png)
-
-**Fig. 5.4: Activity Diagram Illustrating the Forensic Investigation Lifecycle**
-
-</div>
-
-<br>
-
-The workflow begins by selecting an active dossier, continues through parallel analysis of raw logs, event timelines, and IOC flags, validates cryptographic hashes, verifies conclusions through the challenge exam, and terminates with generating the signed incident report.
+```mermaid
+flowchart TD
+    Start([Launch Case Dossier]) --> ReadScenario[Read Incident Briefing & Objectives]
+    ReadScenario --> OpenLocker[Open Evidence Locker]
+    OpenLocker --> InspectRaw[Inspect Raw Log & Compare SHA-256 Hash]
+    InspectRaw --> FlagAnom{Is Indicator Suspicious?}
+    FlagAnom -- Yes --> TagRedFlag[Tag Artifact as Red Flag]
+    FlagAnom -- No --> NextEv[Mark Evidence as Reviewed]
+    TagRedFlag --> NextEv
+    NextEv --> OpenTimeline[Open Event Timeline]
+    OpenTimeline --> Reconstruct[Filter Red Flags & Reconstruct Chronology]
+    Reconstruct --> DraftFindings[Document Findings & Formulate Hypothesis]
+    DraftFindings --> TakeQuiz[Submit Scenario Challenge Assessment]
+    TakeQuiz --> CheckPass{Passed Assessment?}
+    CheckPass -- No --> ReviewHints[Review Mentor Tips & Re-examine Logs] --> Reconstruct
+    CheckPass -- Yes --> GenReport[Synthesize Official Incident Report]
+    GenReport --> ExportPDF[Export / Print Formal Incident Report]
+    ExportPDF --> End([Investigation Complete])
+```
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 # CHAPTER 6: SAMPLE CODING
 
-### 6.1 APPLICATION STRUCTURE & NAVIGATION (`index.html`)
-The main application structure establishes the semantic layout, sidebar navigation, dynamic view containers, and accessibility controls:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Digital Forensics Lab - Interactive Cybersecurity Simulator">
-  <title>Digital Forensics Lab | Incident Investigation Simulator</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="app-container">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar" id="app-sidebar">
-      <div class="sidebar-header">
-        <a href="#dashboard" class="brand-badge">
-          <div class="brand-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <div class="brand-title">
-            <span class="brand-name">DFIR LAB</span>
-            <span class="brand-tagline">Forensic Station</span>
-          </div>
-        </a>
-      </div>
-      <nav class="sidebar-nav">
-        <a href="#dashboard" class="nav-item active" data-view="view-dashboard">Dashboard</a>
-        <a href="#cases" class="nav-item" data-view="view-cases">Case Files</a>
-        <a href="#evidence" class="nav-item" data-view="view-evidence">Evidence Viewer</a>
-        <a href="#timeline" class="nav-item" data-view="view-timeline">Event Timeline</a>
-        <a href="#findings" class="nav-item" data-view="view-findings">Red Flags & Findings</a>
-        <a href="#challenge" class="nav-item" data-view="view-challenge">Case Challenge</a>
-        <a href="#report" class="nav-item" data-view="view-report">Official Report</a>
-      </nav>
-    </aside>
-
-    <!-- Main Dynamic Content Workspace -->
-    <main class="main-wrapper" id="main-content">
-      <header class="app-header">
-        <div class="active-case-banner" id="header-case-badge">
-          <span class="active-case-tag" id="header-case-id">DF-2024-001</span>
-          <span class="active-case-name" id="header-case-name">The Midnight Access</span>
-        </div>
-      </header>
-
-      <!-- View Containers (Toggled via JavaScript SPA Router) -->
-      <section id="view-dashboard" class="view-section active-view"></section>
-      <section id="view-cases" class="view-section"></section>
-      <section id="view-evidence" class="view-section"></section>
-      <section id="view-timeline" class="view-section"></section>
-      <section id="view-findings" class="view-section"></section>
-      <section id="view-challenge" class="view-section"></section>
-      <section id="view-report" class="view-section"></section>
-    </main>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
-```
-
----
-
-<div style="page-break-after: always;"></div>
-
-### 6.2 CYBERPUNK THEME & RESPONSIVE STYLING (`style.css`)
-Modern CSS custom properties (variables) establish a sleek dark aesthetic with neon cyan and amber accents:
-
-```css
-:root {
-  --bg-primary: #060911;
-  --bg-surface: #0b1120;
-  --bg-card: #0f172a;
-  --border-color: #1e293b;
-  --border-focus: #00f0ff;
-  
-  --accent-cyan: #00f0ff;
-  --accent-amber: #f59e0b;
-  --accent-red: #ef4444;
-  --accent-emerald: #10b981;
-  
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-body {
-  margin: 0;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-}
-
-.view-section {
-  display: none;
-  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.view-section.active-view {
-  display: block;
-}
-
-.evidence-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  transition: all 0.2s ease;
-}
-
-.evidence-card:hover {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
-}
-
-.log-terminal {
-  background: #020617;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: #38bdf8;
-  overflow-x: auto;
-}
-```
-
----
-
-<div style="page-break-after: always;"></div>
-
-### 6.3 FORENSIC DATA STRUCTURES & LOG CORRELATION (`script.js`)
-The core dataset models realistic multi-source telemetry with cryptographic hash signatures and plain-English translations:
-
+### 6.1 Evidence Locker & Raw Syslog/JSON Inspector (`script.js`)
 ```javascript
-const FORENSIC_CASES = [
-  {
-    id: "DF-2024-001",
-    title: "The Midnight Access",
-    subtitle: "Suspicious login and confidential file access",
-    difficulty: "Beginner",
-    estimatedTime: "15 min",
-    category: "Unauthorized Access & Exfiltration",
-    scenario: "At 11:48 PM on a Friday, an alert was generated by internal document management server FS-ALPHA. A confidential acquisition dossier was downloaded outside business hours using credentials of Elena Vance.",
-    evidence: [
-      {
-        id: "EV-101",
-        timestamp: "2024-10-11 23:40:12 UTC",
-        epoch: 1728690012,
-        type: "login",
-        severity: "suspicious",
-        summary: "Failed Web SSO login attempt for user 'evance'",
-        plainEnglish: "Someone tried to log into Elena Vance's account with an incorrect password from an external IP address.",
-        source: "AUTH-GW-01 (SSO Gateway)",
-        details: "Authentication failure. Password hash mismatch. Origin IP: 198.51.100.42.",
-        rawLog: '{"event_id":4625,"user":"evance","src_ip":"198.51.100.42","status":"FAILURE"}',
-        hash: "8f4a9b2c3d1e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a",
-        isSuspicious: true
-      },
-      {
-        id: "EV-104",
-        timestamp: "2024-10-11 23:45:02 UTC",
-        epoch: 1728690302,
-        type: "login",
-        severity: "critical",
-        summary: "Successful Web SSO authentication for 'evance'",
-        plainEnglish: "The valid password was finally entered from the same external IP after three failed attempts.",
-        source: "AUTH-GW-01 (SSO Gateway)",
-        details: "Successful login from 198.51.100.42. Session token issued.",
-        rawLog: '{"event_id":4624,"user":"evance","src_ip":"198.51.100.42","status":"SUCCESS"}',
-        hash: "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4",
-        isSuspicious: true
-      }
-    ]
+/**
+ * Inspects a specific evidence artifact, presents formatted metadata,
+ * renders the raw syslog/JSON payload, and displays cryptographic hashes.
+ */
+function inspectEvidence(evidenceId) {
+  const activeCase = getActiveCase();
+  const item = activeCase.evidence.find(e => e.id === evidenceId);
+  if (!item) return;
+
+  const progress = getActiveProgress();
+  if (!progress.reviewedEvidence.includes(item.id)) {
+    progress.reviewedEvidence.push(item.id);
+    saveState();
+    updateGlobalStats();
+    updateStepperUI();
   }
-];
-```
 
----
-
-<div style="page-break-after: always;"></div>
-
-### 6.4 CRYPTOGRAPHIC VERIFICATION & SPA ROUTING (`script.js`)
-Demonstrating real-time cryptographic hash verification and client-side view navigation:
-
-```javascript
-// Dynamic SPA View Navigation and Stepper Synchronization
-function navigateTo(viewId) {
-  currentViewId = viewId;
+  // Populate Inspector Modal Elements
+  document.getElementById("inspector-title").innerHTML = 
+    `<span style="color:var(--neon-cyan);">${item.id}</span> • ${item.summary}`;
   
-  document.querySelectorAll(".nav-item").forEach(item => {
-    item.classList.toggle("active", item.getAttribute("data-view") === viewId);
-  });
-
-  document.querySelectorAll(".view-section").forEach(sec => {
-    sec.classList.toggle("active-view", sec.id === viewId);
-  });
-
-  renderCurrentView();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("inspector-details").textContent = item.details;
+  document.getElementById("inspector-raw").textContent = item.rawLog;
+  document.getElementById("inspector-hash").textContent = item.hash;
+  
+  // Format Plain-English Explanation
+  document.getElementById("inspector-plain-english").innerHTML = `
+    <div class="plain-english-box">
+      <strong>Plain-English Meaning:</strong> ${item.plainEnglish}
+    </div>
+  `;
 }
+```
 
-// SHA-256 Evidence Chain-of-Custody Verification
-async function verifyEvidenceIntegrity(rawPayload, expectedHash) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(rawPayload);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const calculatedHash = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+### 6.2 Chronological Timeline Reconstruction Engine (`script.js`)
+```javascript
+/**
+ * Orders disparate multi-source log records chronologically
+ * and applies real-time anomaly filters.
+ */
+function renderTimelineView() {
+  const activeCase = getActiveCase();
+  const container = document.getElementById("timeline-nodes-tree");
+  if (!container) return;
 
-  return {
-    verified: calculatedHash.slice(0, 16) === expectedHash.slice(0, 16),
-    calculatedHash: calculatedHash,
-    expectedHash: expectedHash
-  };
+  let events = [...activeCase.evidence];
+
+  // Apply Suspicious Indicator Filter
+  if (timelineFilterSuspiciousOnly) {
+    events = events.filter(e => e.isSuspicious);
+  }
+
+  // Sort Chronologically by Epoch Timestamp
+  events.sort((a, b) => timelineSortAsc ? a.epoch - b.epoch : b.epoch - a.epoch);
+
+  container.innerHTML = "";
+  events.forEach(item => {
+    const node = document.createElement("div");
+    node.className = `timeline-node ${item.severity === 'critical' ? 'is-critical' : (item.isSuspicious ? 'is-suspicious' : '')}`;
+    node.onclick = () => inspectEvidence(item.id);
+
+    node.innerHTML = `
+      <div class="timeline-node-marker"></div>
+      <div class="timeline-node-card">
+        <div class="timeline-node-header">
+          <span class="timeline-node-time">${item.timestamp}</span>
+          <span class="badge ${item.isSuspicious ? 'badge-amber' : 'badge-cyan'}">${item.source}</span>
+        </div>
+        <div class="timeline-node-body">
+          <p><strong>${item.summary}</strong></p>
+          <p class="timeline-node-plain">${item.plainEnglish}</p>
+        </div>
+      </div>
+    `;
+    container.appendChild(node);
+  });
+}
+```
+
+### 6.3 Findings Board & Hypothesis State Management (`script.js`)
+```javascript
+/**
+ * Persists flagged red-flag indicators and manages investigator notes.
+ */
+function toggleEvidenceFlag(evidenceId) {
+  const progress = getActiveProgress();
+  if (!progress.flaggedEvidence) progress.flaggedEvidence = [];
+
+  const index = progress.flaggedEvidence.indexOf(evidenceId);
+  if (index > -1) {
+    progress.flaggedEvidence.splice(index, 1);
+  } else {
+    progress.flaggedEvidence.push(evidenceId);
+  }
+
+  saveState();
+  updateGlobalStats();
+  renderEvidenceViewer();
+  renderFindingsView();
+}
+```
+
+### 6.4 Executive Incident Report Synthesis Engine (`script.js`)
+```javascript
+/**
+ * Compiles verified forensic actions, evidence tables, and findings
+ * into an audit-compliant Incident Investigation Report.
+ */
+function renderReportView() {
+  const activeCase = getActiveCase();
+  const progress = getActiveProgress();
+  const container = document.getElementById("report-paper-body");
+  if (!container) return;
+
+  const now = new Date().toUTCString();
+  const reviewedCount = (progress.reviewedEvidence || []).length;
+  const examinerName = appState.investigatorName || "Alex Rivera";
+  const rank = getInvestigatorRank();
+
+  container.innerHTML = `
+    <div class="report-header-section">
+      <div class="report-org-title">
+        <div class="report-subhead">DIGITAL FORENSICS LAB • INCIDENT RESPONSE DIVISION</div>
+        <div class="report-org-name">OFFICIAL INCIDENT INVESTIGATION REPORT</div>
+        <div class="report-examiner">EXAMINER: ${examinerName.toUpperCase()} (${rank.title.toUpperCase()})</div>
+      </div>
+      <dl class="report-meta-table">
+        <dt>CASE ID:</dt><dd>${activeCase.id}</dd>
+        <dt>INCIDENT:</dt><dd>${activeCase.title}</dd>
+        <dt>DATE:</dt><dd>${now}</dd>
+        <dt>STATUS:</dt><dd>${progress.completed ? 'SOLVED & VERIFIED' : 'IN-PROGRESS'}</dd>
+      </dl>
+    </div>
+    <div class="report-block">
+      <div class="report-block-title"><span>1.0</span> Executive Summary</div>
+      <p class="report-paragraph">${activeCase.scenario}</p>
+      <p class="report-paragraph"><strong>Objective:</strong> ${activeCase.objective}</p>
+    </div>
+    <div class="report-block">
+      <div class="report-block-title"><span>2.0</span> Corroborating Artifacts (${reviewedCount}/${activeCase.evidence.length})</div>
+      <table class="report-table">
+        <thead>
+          <tr><th>Item</th><th>Timestamp</th><th>Source</th><th>Summary</th></tr>
+        </thead>
+        <tbody>
+          ${activeCase.evidence.map(e => `
+            <tr><td>${e.id}</td><td>${e.timestamp}</td><td>${e.source}</td><td>${e.summary}</td></tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
 }
 ```
 
 ---
+\pagebreak
 
-<div style="page-break-after: always;"></div>
+# CHAPTER 7: SCREEN SHOTS
 
-# CHAPTER 7: SCREENSHOTS
+### Fig. 7.1. Dashboard Overview and Case Metrics
+![Fig. 7.1 Dashboard Overview](report_images/fig_7_1_dashboard.png)
+*Description:* The centralized command dashboard displaying overall investigation progress, evidence review telemetry, investigator rank badge, and quick-action case launchers.
 
-### Fig. 7.1: Forensics Lab Executive Dashboard
-The Executive Dashboard presents high-level situational awareness: the active case banner, investigation readiness indicators, statistics on assigned dossiers, clues examined, solved incidents, and the investigator's active security level.
+### Fig. 7.2. Incident Case Selection and Dossier View
+![Fig. 7.2 Incident Cases](report_images/fig_7_2_cases.png)
+*Description:* The interactive scenario library showcasing three real-world cyber incidents (*The Midnight Access*, *The Missing Files*, and *The Unknown Device*) with estimated completion times and category tags.
 
-<br>
+### Fig. 7.3. Evidence Locker and Hash Integrity Verification
+![Fig. 7.3 Evidence Locker](report_images/fig_7_3_evidence.png)
+*Description:* The evidence locker displaying parsed log items, plain-English translations, raw telemetry inspector modal, and cryptographic SHA-256 chain-of-custody checksums.
 
-<div align="center">
+### Fig. 7.4. Interactive Incident Timeline Reconstruction
+![Fig. 7.4 Event Timeline](report_images/fig_7_4_timeline.png)
+*Description:* The chronological event timeline ordering authentication events, proxy transfers, and file system modifications, featuring real-time anomaly and red-flag filtering.
 
-![Forensics Lab Executive Dashboard](./report_images/fig_7_1_dashboard.png)
+### Fig. 7.5. Findings and Red Flags Board
+![Fig. 7.5 Findings Board](report_images/fig_7_5_findings.png)
+*Description:* The findings and hypothesis board where investigators correlate flagged indicators of compromise (IOCs), record working theories, and manage investigator notes.
 
-**Fig. 7.1: Executive Dashboard with System Status and Key Metrics**
+### Fig. 7.6. Incident Response Knowledge Challenge
+![Fig. 7.6 Knowledge Challenge](report_images/fig_7_6_challenge.png)
+*Description:* The scenario-grounded examination module verifying investigative deductions, root-cause attribution, and remediation strategies with instant scoring feedback.
 
-</div>
-
-*Explanation: The user is greeted by a centralized control dashboard displaying system readiness, an active case switcher, real-time counters for evidence examined, and access to investigator tools.*
-
----
-
-<div style="page-break-after: always;"></div>
-
-### Fig. 7.2: Forensic Case Files Catalog & Scenario Selector
-The Case Files view displays the catalog of all three simulated incident dossiers with their threat categories, difficulty ratings, estimated investigation duration, and direct entry points.
-
-<br>
-
-<div align="center">
-
-![Case Files Catalog](./report_images/fig_7_2_cases.png)
-
-**Fig. 7.2: Forensic Case Catalog and Scenario Selector Interface**
-
-</div>
-
-*Explanation: Analysts can browse through multiple case dossiers, including 'The Midnight Access' and 'The Missing Files', reviewing the incident overview and SHA-256 integrity assurances prior to opening the investigation.*
+### Fig. 7.7. Official Incident Investigation Report
+![Fig. 7.7 Official Report](report_images/fig_7_7_report.png)
+*Description:* The automated executive report generator compiling incident summaries, timeline findings, evidence audit tables, and examiner sign-offs into a printable deliverable.
 
 ---
-
-<div style="page-break-after: always;"></div>
-
-### Fig. 7.3: Deep Evidence Viewer & Cryptographic Hash Inspector
-The Evidence Viewer allows analysts to inspect every piece of digital evidence recovered from the target environment, complete with timestamps, severity ratings, plain-English translations, and raw log payloads.
-
-<br>
-
-<div align="center">
-
-![Evidence Viewer](./report_images/fig_7_3_evidence.png)
-
-**Fig. 7.3: Evidence Viewer with Plain-English Translation and SHA-256 Hash Display**
-
-</div>
-
-*Explanation: Each evidence card breaks down complex event IDs into understandable explanations while preserving raw log data and cryptographic checksums for forensic validity.*
-
----
-
-<div style="page-break-after: always;"></div>
-
-### Fig. 7.4: Interactive Incident Timeline Reconstruction
-The Event Timeline module arranges disparate multi-source log records chronologically, enabling investigators to visually reconstruct the threat actor's trajectory across the enterprise infrastructure.
-
-<br>
-
-<div align="center">
-
-![Event Timeline](./report_images/fig_7_4_timeline.png)
-
-**Fig. 7.4: Interactive Chronological Event Timeline with Anomaly Filters**
-
-</div>
-
-*Explanation: The timeline reveals how three consecutive authentication failures escalated into a successful session login, followed immediately by file access and anti-forensic log tampering.*
-
----
-
-<div style="page-break-after: always;"></div>
-
-### Fig. 7.5: Red Flag Indicator & Forensic Findings Board
-The Findings Board provides a dedicated workspace where investigators can tag, review, and correlate observed technical red flags with specific forensic hypotheses.
-
-<br>
-
-<div align="center">
-
-![Findings Board](./report_images/fig_7_5_findings.png)
-
-**Fig. 7.5: Red Flags & Findings Board for IOC Analysis**
-
-</div>
-
-*Explanation: This interface reinforces the golden rule of forensics: distinguishing observed facts from speculative assumptions, and grouping confirmed indicators of compromise.*
-
----
-
-<div style="page-break-after: always;"></div>
-
-### Fig. 7.6: Case Challenge & Threat Analysis Assessment
-The Case Challenge module presents scenario-driven multiple-choice questions requiring the investigator to prove root-cause attribution, compromised accounts, and remediation priorities.
-
-<br>
-
-<div align="center">
-
-![Case Challenge Exam](./report_images/fig_7_6_challenge.png)
-
-**Fig. 7.6: Interactive Incident Response Challenge and Knowledge Verification**
-
-</div>
-
-*Explanation: Investigators test their findings against scientific criteria, receiving instant feedback, scoring breakdowns, and promotion toward higher examiner ranks.*
-
----
-
-<div style="page-break-after: always;"></div>
-
-### Fig. 7.7: Official Incident Response & Chain-of-Custody Report
-Upon successful case resolution, the platform automatically synthesizes all verified facts into an executive Incident Investigation Report complete with digital signatures and remediation roadmaps.
-
-<br>
-
-<div align="center">
-
-![Official Incident Report](./report_images/fig_7_7_report.png)
-
-**Fig. 7.7: Official Incident Investigation Report Generated by the Platform**
-
-</div>
-
-*Explanation: The generated report formats executive summaries, chronological findings, and recommended security controls into an audit-ready deliverable ready for export or printing.*
-
----
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 # CHAPTER 8: CONCLUSION & FUTURE ENHANCEMENTS
 
 ### 8.1 CONCLUSION
-The **Digital Forensics Lab** successfully fulfills the objective of creating an accessible, educational, and technically authentic cybersecurity simulation platform. By eliminating the heavy software installation requirements of traditional forensic training, the platform empowers students to conduct hands-on forensic investigations directly within a modern web browser.
+The **Digital Forensics Lab** mini-project successfully realizes a high-fidelity, educational, and technically authentic cybersecurity simulation platform. By eliminating the hardware and software configuration obstacles inherent in traditional forensic virtual machines, the platform allows students and security analysts to conduct authentic investigations directly within any modern web browser.
 
-Key outcomes realized by this project include:
-* Successful implementation of a 100% client-side, zero-dependency architecture (HTML5, modern CSS3, and ES6+ JavaScript).
-* Comprehensive authoring of three realistic incident dossiers complete with multi-source raw telemetry and chronological event sequencing.
-* Practical demonstration of cryptographic chain of custody using SHA-256 hash validation.
-* Effective pedagogical scaffolding through dual-layer log representation (raw JSON payloads coupled with plain-English translations).
-* Automated synthesis of findings into formal, print-ready incident response reports.
-
-The platform serves as an ideal pedagogical instrument for universities, cybersecurity training programs, and autonomous self-study, bridging the gap between abstract textbook security concepts and real-world incident response practice.
+Key project milestones achieved:
+* **Zero-Dependency Architecture:** Pure HTML5, modern CSS3 custom properties, and vanilla ES6+ JavaScript running completely client-side without server dependencies.
+* **Realistic Case Simulations:** Three complete incident dossiers featuring heterogeneous raw telemetry (SSO, syslog, bash history, reverse proxy, and file systems).
+* **Cryptographic Integrity:** Demonstration of chain of custody through SHA-256 checksums and immutable evidence tracking.
+* **Dual-Layer Pedagogical Scaffolding:** Pairing raw JSON and RFC syslog strings with plain-English mentor translations.
+* **Automated Deliverable Generation:** Dynamic compilation of case telemetry into audit-compliant, printable incident reports.
 
 ### 8.2 FUTURE ENHANCEMENTS
-To build upon the foundations established in this mini-project, several avenues for future enhancement are planned:
-1. **Live PCAP Network Stream Dissection**: Integrating a lightweight WebAssembly-compiled packet dissector to allow students to analyze raw `.pcap` packet captures alongside server logs.
-2. **AI-Powered Forensic Mentor Copilot**: Embedding a localized LLM-driven forensic assistant to provide dynamic, contextual hints without revealing direct answers.
-3. **Multi-User Collaborative Tabletop Mode**: Implementing WebRTC or WebSocket connectivity to allow incident response teams to collaborate simultaneously on shared case files.
-4. **Memory Dump Volatility Emulator**: Simulating volatility memory extraction (e.g., viewing injected DLLs and process trees) directly in the browser interface.
-5. **Direct Integration with OpenCTI & MITRE ATT&CK**: Linking flagged forensic indicators directly with official MITRE ATT&CK technique IDs (e.g., T1078 Valid Accounts, T1070 Indicator Removal).
+Future iterations of Digital Forensics Lab will expand upon this foundational architecture:
+* **Live PCAP Stream Dissection:** Integrating a WebAssembly-compiled packet parser to inspect raw `.pcap` network capture files in browser memory.
+* **AI-Powered Mentor Copilot:** Incorporating a localized LLM-driven assistant to deliver contextual hints and guided Socratic feedback during investigations.
+* **Multi-User Collaborative Tabletop Mode:** Implementing WebRTC data channels to enable multi-analyst team collaboration on shared incident dossiers.
+* **Memory Dump Volatility Simulator:** Simulating volatile memory forensics (e.g., injected DLL analysis, network sockets, and process trees).
+* **Direct MITRE ATT&CK Mapping:** Linking observed evidence artifacts directly to standardized MITRE ATT&CK Enterprise Matrix technique IDs.
 
 ---
-
-<div style="page-break-after: always;"></div>
+\pagebreak
 
 # REFERENCES
 
-1. **National Institute of Standards and Technology (NIST)**, *"Guide to Integrating Forensic Techniques into Incident Response"*, NIST Special Publication 800-86, U.S. Department of Commerce.
-2. **Carrier, B.**, *"File System Forensic Analysis"*, Addison-Wesley Professional, 1st Edition.
-3. **RFC 3227**, Brezz, D. & Fraser, N., *"Guidelines for Evidence Collection and Archiving"*, Internet Engineering Task Force (IETF).
-4. **MITRE Corporation**, *"MITRE ATT&CK Enterprise Matrix"*, Available online at: `https://attack.mitre.org`.
-5. **W3C Recommendation**, *"Web Cryptography API"*, World Wide Web Consortium, Available online at: `https://www.w3.org/TR/WebCryptoAPI/`.
-6. **Mozilla Developer Network (MDN)**, *"Web APIs, DOM Manipulation, and Modern JavaScript"*, Available online at: `https://developer.mozilla.org`.
-7. **OWASP Foundation**, *"Incident Response and Digital Forensics Guidance"*, Available online at: `https://owasp.org`.
-8. **Rajalakshmi Engineering College**, *"B.E. Computer Science and Engineering Curriculum & Laboratory Regulations"*, Autonomous Regulations, Anna University, Chennai.
+1. **Carrier, B.**, *File System Forensic Analysis*, Addison-Wesley Professional, 1st Edition.
+2. **National Institute of Standards and Technology (NIST)**, *Guide to Integrating Forensic Techniques into Incident Response*, NIST Special Publication 800-86, U.S. Department of Commerce.
+3. **RFC 3227**, Brezinski, D. & Killalea, T., *Guidelines for Evidence Collection and Archiving*, Internet Engineering Task Force (IETF).
+4. **MITRE Corporation**, *MITRE ATT&CK Enterprise Framework*, Available online at: [https://attack.mitre.org](https://attack.mitre.org)
+5. **Mozilla Developer Network (MDN) Web Docs**, *Web Storage API, DOM APIs, and Modern JavaScript*, Available online at: [https://developer.mozilla.org](https://developer.mozilla.org)
+6. **W3Schools Online Web Tutorials**, *HTML5, CSS3, and JavaScript Standard Documentation*, Available online at: [https://www.w3schools.com](https://www.w3schools.com)
